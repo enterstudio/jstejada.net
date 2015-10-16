@@ -1,4 +1,6 @@
 @import '~normalize.css/normalize.css';
+@import '~react-typist/src/Cursor.scss';
+@import 'variables.scss';
 
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
@@ -10,9 +12,14 @@
 html {
   color: #222;
   font-weight: 100;
-  font-size: 1em; /* ~16px; */
-  font-family: monospace;
+  font-size: .8em; /* ~16px; */
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   line-height: 1.375; /* ~22px */
+  background: $light-bg-color;
+}
+
+input:focus {
+  outline: none;
 }
 
 /*
