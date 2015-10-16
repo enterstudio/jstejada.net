@@ -1,0 +1,28 @@
+/* */
+@import 'variables.scss';
+
+.Nav {
+  &-header {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+
+    &:after {
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 3px;
+      background-color: $main-red;
+      content: "";
+      animation: underline-header 1s 1;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes underline-header {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+  }
+}
+
