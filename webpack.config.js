@@ -21,12 +21,16 @@ module.exports = {
     loaders: [
       {
         test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract("style", sassLoaders.join('!')),
+        loader: ExtractTextPlugin.extract('style', sassLoaders.join('!')),
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel?optional=es7.classProperties', 'eslint'],
+      },
+      {
+        test: /\.html$/,
+        loaders: ['file-loader?name=[path][name].[ext]&context=./public'],
       },
     ],
   },
@@ -35,6 +39,6 @@ module.exports = {
   ],
   resolve: {
     extensions: ['', '.js', '.json', '.jsx', '.scss'],
-    modulesDirectories: ['src', 'node_modules'],
+    modulesDirectories: ['src', 'node_modules', 'public'],
   },
 };
