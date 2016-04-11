@@ -6,7 +6,7 @@ juan's site
 
 Development:
 
-  - npm start
+  - npm run dev
 
 Build:
 
