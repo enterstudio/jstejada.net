@@ -1,0 +1,13 @@
+@import 'variables.scss';
+
+.MessageList {
+  min-height: 50px;
+
+  &-message {
+    margin: 4px 0;
+
+    &--user {
+      text-align: right;
+    }
+  }
+}

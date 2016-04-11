@@ -1,0 +1,40 @@
+@import 'variables.scss';
+
+.ChatContainer {
+  width: 400px;
+  border-radius: 5px;
+  padding: 15px 20px;
+
+  opacity: 0;
+  animation: make-visible ease-in 0.5s 1;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+
+  &-inner {
+    height: 150px;
+    overflow: hidden;
+  }
+
+  &-input {
+    width: 100%;
+    border-top: $main-blue solid 2px;
+    opacity: 0;
+
+    input {
+      background-color: transparent;
+      border: none;
+      padding-top: 10px;
+    }
+
+    &--ready {
+      animation: make-visible ease-in 1.5s 1;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+    }
+  }
+
+  @keyframes make-visible {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
