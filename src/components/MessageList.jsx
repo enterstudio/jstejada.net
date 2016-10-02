@@ -4,9 +4,9 @@ import { USER, BOT } from 'constants';
 import 'styles/MessageList';
 
 
-function renderMessage(type, text) {
+function Message({ type, text }) {
   if (type === USER) {
-    return `${text} <`;
+    return <span>{`${text} <`}</span>;
   }
   return (
     <Typist
@@ -19,6 +19,12 @@ function renderMessage(type, text) {
   );
 }
 
+Message.propTypes = {
+  type: PropTypes.string,
+  text: PropTypes.string,
+};
+
+
 export default function MessageList({ messages }) {
   return (
     <div className="MessageList">
@@ -27,7 +33,7 @@ export default function MessageList({ messages }) {
           key={`MessageList-message(${idx})`}
           className={`MessageList-message MessageList-message--${msg.type}`}
         >
-          {renderMessage(msg.type, msg.text)}
+          <Message {...msg} />
         </div>
       ))}
     </div>

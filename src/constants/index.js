@@ -1,3 +1,4 @@
 
-export * from 'constants/MessageTypes';
-export * from 'constants/ActionTypes';
+export * from 'constants/message-types';
+export * from 'constants/action-types';
+export * from 'constants/server-config';

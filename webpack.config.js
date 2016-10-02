@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -43,6 +44,11 @@ module.exports = {
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   plugins: [
     new ExtractTextPlugin('[name].css', { allChunks: true }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
   ],
   resolve: {
     root: [

@@ -2,7 +2,8 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "globals": {
-    "__DEV__": true
+    "__DEV__": false,
+    "__TWITTER_CONSUMER_SECRET__": false,
   },
   "rules": {
     "react/jsx-quotes": 0,

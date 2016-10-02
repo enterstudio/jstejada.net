@@ -1,28 +1,29 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from 'actions';
+import * as Actions from 'actions';
 import Intro from 'components/Intro';
 import MessageList from 'components/MessageList';
 import 'styles/ChatContainer';
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(Actions, dispatch);
 }
 
-function mapStateToProps({ introDone, chatMessages }) {
-  return { introDone, messages: chatMessages };
+function mapStateToProps({ isIntroDone, messages }) {
+  return { isIntroDone, messages };
 }
 
 class ChatContainer extends Component {
 
   static propTypes = {
-    introDone: PropTypes.bool,
+    isIntroDone: PropTypes.bool,
     messages: PropTypes.array,
     finishIntro: PropTypes.func,
     addUserMessage: PropTypes.func,
-    addBotMessage: PropTypes.func,
+    fetchBotMessage: PropTypes.func,
   }
 
   state = {
@@ -36,10 +37,10 @@ class ChatContainer extends Component {
   onInputKeyDown = (event) => {
     if (['Enter', 'Return'].includes(event.key)) {
       const { inputValue } = this.state;
-      const { addUserMessage, addBotMessage } = this.props;
+      const { addUserMessage, fetchBotMessage } = this.props;
       this.clearInput();
       addUserMessage(inputValue);
-      addBotMessage(inputValue);
+      fetchBotMessage(inputValue);
     }
   }
 
@@ -47,25 +48,31 @@ class ChatContainer extends Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  onIntroDone = () => {
+    const { finishIntro } = this.props;
+    findDOMNode(this.refs.input).focus();
+    finishIntro();
+  }
+
   clearInput() {
     this.setState({ inputValue: '' });
   }
 
   render() {
-    const { introDone, messages, finishIntro } = this.props;
+    const { isIntroDone, messages } = this.props;
     const { inputValue } = this.state;
-    const ready = introDone ? ' ChatContainer-input--ready' : '';
+    const ready = isIntroDone ? ' ChatContainer-input--ready' : '';
 
     return (
       <div className="ChatContainer">
         <div className="ChatContainer-inner" ref="chatBoxInner">
-          <Intro onIntroDone={finishIntro} />
+          <Intro onIntroDone={this.onIntroDone} />
           <MessageList messages={messages} />
         </div>
         <div className={`ChatContainer-input${ready}`}>
           <span>> </span>
           <input
-            autoFocus
+            ref="input"
             type="text"
             value={inputValue}
             onChange={this.onInputChange}
