@@ -19,7 +19,7 @@
   "author": "Juan Tejada",
   "license": "ISC",
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "koa": "^1.2.2",
     "koa-cors": "0.0.16",
     "koa-static": "^2.0.0",
